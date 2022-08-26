@@ -1,7 +1,6 @@
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\HFFinterface.dll
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\HFFinterface.pdb
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\0Harmony.dll
-C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\0Harmony20.dll
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\Assembly-CSharp.dll
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\BepInEx.dll
