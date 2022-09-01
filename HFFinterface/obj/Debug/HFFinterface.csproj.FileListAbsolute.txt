@@ -129,7 +129,6 @@ C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\UnityEngine.Video
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\UnityEngine.VRModule.xml
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\UnityEngine.WebModule.xml
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\bin\Debug\UnityEngine.WindModule.xml
-C:\Users\Temp\source\repos\HFFinterface\HFFinterface\obj\Debug\HFFinterface.csprojAssemblyReference.cache
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\obj\Debug\HFFinterface.csproj.CoreCompileInputs.cache
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\obj\Debug\HFFinterface.csproj.CopyComplete
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\obj\Debug\HFFinterface.dll
