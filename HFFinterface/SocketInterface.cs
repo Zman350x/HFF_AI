@@ -25,8 +25,8 @@ namespace HFFinterface
         GameObject cubePrimitive;
 
         //GameObject filters
-        static Type[] include = { typeof(Collider) };
-        static Type[] exclude = { typeof(Hint), typeof(NetBody), typeof(Ambience), typeof(Reverb), typeof(AudioSource), typeof(MusicPlayer),
+        static Type[] include = { typeof(Collider), typeof(Renderer) };
+        static Type[] exclude = { typeof(Hint), typeof(Ambience), typeof(Reverb), typeof(AudioSource), typeof(MusicPlayer),
                                   typeof(PostProcessVolume), typeof(Light), typeof(LightProbeGroup), typeof(NarrativeBlock),
                                   typeof(NarrativeForceTrigger), typeof(CloudBox), typeof(Sound2), typeof(SoundManagerPrefab) };
         static string[] special_exclude = { "achievement", "tutorial" };
@@ -128,27 +128,24 @@ namespace HFFinterface
 
         private static bool filterGameObject(GameObject gameObject)
         {
-            bool filtered = true;
             foreach (Type type in include)
             {
-                if (gameObject.GetComponentInChildren(type) != null) { filtered = true; break; }
+                if (gameObject.GetComponentInChildren(type) == null) { return false; }
             }
-            if (filtered)
+            foreach (Type type in exclude)
             {
-                foreach (Type type in exclude)
+                if (gameObject.GetComponent(type) != null) { return false; }
+            }
+            foreach (string in_type in special_exclude)
+            {
+                List<Component> rawComponents = new List<Component>(gameObject.GetComponents<Component>());
+                foreach (Component component in rawComponents)
                 {
-                    if (gameObject.GetComponent(type) != null) { return false; }
-                }
-                foreach (string in_type in special_exclude)
-                {
-                    List<Component> rawComponents = new List<Component>(gameObject.GetComponents<Component>());
-                    foreach (Component component in rawComponents)
-                    {
-                        if (component.GetType().ToString().ToLower().Contains(in_type)) { return false; }
-                    }
+                    if (component.GetType().ToString().ToLower().Contains(in_type)) { return false; }
                 }
             }
-            return filtered;
+
+            return true;
         }
     }
 
