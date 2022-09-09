@@ -270,6 +270,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HFFInputDevice.cs" />
+    <Compile Include="HFFInputManager.cs" />
     <Compile Include="HFFObject.cs" />
     <Compile Include="SocketInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

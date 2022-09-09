@@ -23,9 +23,9 @@ namespace HFFinterface
         static SocketInterface instance;
 
         GameObject cubePrimitive;
-
+        
         //GameObject filters
-        static Type[] include = { typeof(Collider), typeof(Renderer) };
+        static Type[] include = { typeof(Collider) };
         static Type[] exclude = { typeof(Hint), typeof(Ambience), typeof(Reverb), typeof(AudioSource), typeof(MusicPlayer),
                                   typeof(PostProcessVolume), typeof(Light), typeof(LightProbeGroup), typeof(NarrativeBlock),
                                   typeof(NarrativeForceTrigger), typeof(CloudBox), typeof(Sound2), typeof(SoundManagerPrefab) };
@@ -33,11 +33,14 @@ namespace HFFinterface
 
         Dictionary<int, HFFObject> levelObjects = new Dictionary<int, HFFObject>();
 
+        HFFInputManager aiInputManager = new HFFInputManager();
+
         public void Start()
         {
             instance = this;
             Harmony.CreateAndPatchAll(typeof(SocketInterface));
             Shell.RegisterCommand("check", new System.Action(check));
+            Shell.RegisterCommand("check", () => aiInputManager.jump());
 
             cubePrimitive = GameObject.CreatePrimitive(PrimitiveType.Cube);
             Renderer objRenderer = cubePrimitive.GetComponent<Renderer>();
@@ -61,7 +64,8 @@ namespace HFFinterface
             if (token.Equals("#Local_Level"))
             {
                 Shell.Print("LEVEL LOADED");
-                check();
+                clearLevelData();
+                instance.Invoke("check", 5);
             }
             else
             {
@@ -74,7 +78,7 @@ namespace HFFinterface
             instance.levelObjects.Clear();
         }
 
-        public static void check()
+        public void check()
         {
             clearLevelData();
             List<GameObject> rootObjects = new List<GameObject>();
@@ -108,14 +112,15 @@ namespace HFFinterface
                     components += ", " + component.GetType().ToString();
                 }
 
+                writer.WriteLine(path + "\t" + components.ToString() + "\t" + gameObject.GetInstanceID());
+
                 if (gameObject.GetComponent<Collider>() != null)
                 {
-                    writer.WriteLine(path + "\t" + components.ToString());
                     instance.levelObjects.Add(gameObject.GetInstanceID(), new HFFObject(gameObject));
-                    //writer.WriteLine(instance.levelObjects[gameObject.GetInstanceID()]);
+                    writer.WriteLine(instance.levelObjects[gameObject.GetInstanceID()]);
                 }
 
-                //writer.WriteLine("");
+                writer.WriteLine("");
 
                 foreach (Transform child in gameObject.transform)
                 {

@@ -133,3 +133,4 @@ C:\Users\Temp\source\repos\HFFinterface\HFFinterface\obj\Debug\HFFinterface.cspr
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\obj\Debug\HFFinterface.csproj.CopyComplete
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\obj\Debug\HFFinterface.dll
 C:\Users\Temp\source\repos\HFFinterface\HFFinterface\obj\Debug\HFFinterface.pdb
+C:\Users\Temp\source\repos\HFFinterface\HFFinterface\obj\Debug\HFFinterface.csprojAssemblyReference.cache

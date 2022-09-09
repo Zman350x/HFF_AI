@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace HFFinterface
 {
-    class HFFObject
+    class HFFObject : MonoBehaviour
     {
         private GameObject unityObject;
 
