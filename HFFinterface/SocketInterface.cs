@@ -22,6 +22,8 @@ namespace HFFinterface
     {
         static SocketInterface instance;
 
+        bool mod_enabled;
+
         GameObject cubePrimitive;
         
         //GameObject filters
@@ -33,23 +35,22 @@ namespace HFFinterface
 
         Dictionary<int, HFFObject> levelObjects = new Dictionary<int, HFFObject>();
 
-        HFFInputManager aiInputManager = new HFFInputManager();
-
         public void Start()
         {
             instance = this;
+            mod_enabled = false;
             Harmony.CreateAndPatchAll(typeof(SocketInterface));
-            Shell.RegisterCommand("check", new System.Action(check));
-            Shell.RegisterCommand("check", () => aiInputManager.jump());
+            //Shell.RegisterCommand("check", new System.Action(check));
+            Shell.RegisterCommand("enable", () => { if (!mod_enabled) { HFFInput.patch(); mod_enabled = true; } } );
 
-            cubePrimitive = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            /*cubePrimitive = GameObject.CreatePrimitive(PrimitiveType.Cube);
             Renderer objRenderer = cubePrimitive.GetComponent<Renderer>();
             StandardShaderUtils.ChangeRenderMode(objRenderer.material, StandardShaderUtils.BlendMode.Transparent);
             objRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             objRenderer.receiveShadows = false;
             cubePrimitive.GetComponent<Collider>().enabled = false;
             DontDestroyOnLoad(cubePrimitive);
-            cubePrimitive.SetActive(false);
+            cubePrimitive.SetActive(false);*/
         }
 
         public void Update()
@@ -65,14 +66,14 @@ namespace HFFinterface
             {
                 Shell.Print("LEVEL LOADED");
                 clearLevelData();
-                instance.Invoke("check", 5);
+                //instance.Invoke("check", 5);
             }
             else
             {
                 clearLevelData();
             }
         }
-        
+
         public static void clearLevelData()
         {
             instance.levelObjects.Clear();
