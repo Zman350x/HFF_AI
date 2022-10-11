@@ -18,9 +18,9 @@ namespace HFFinterface
 
     [BepInPlugin("org.bepinex.plugins.humanfallflat.interface", "External Socket Interface", "0.0.1")]
     [BepInProcess("Human.exe")]
-    public class SocketInterface : BaseUnityPlugin
+    public class Main : BaseUnityPlugin
     {
-        static SocketInterface instance;
+        static Main instance;
 
         bool mod_enabled;
 
@@ -39,9 +39,10 @@ namespace HFFinterface
         {
             instance = this;
             mod_enabled = false;
-            Harmony.CreateAndPatchAll(typeof(SocketInterface));
+            Harmony.CreateAndPatchAll(typeof(Main));
             //Shell.RegisterCommand("check", new System.Action(check));
-            Shell.RegisterCommand("enable", () => { if (!mod_enabled) { HFFInput.patch(); mod_enabled = true; } } );
+            Shell.RegisterCommand("enable", () => { if (!mod_enabled) { HFFInput.patch(); PythonInterface.init(); mod_enabled = true; } } );
+            Shell.RegisterCommand("listen", () => { if (mod_enabled) { PythonInterface.listen(); } });
 
             /*cubePrimitive = GameObject.CreatePrimitive(PrimitiveType.Cube);
             Renderer objRenderer = cubePrimitive.GetComponent<Renderer>();
@@ -55,7 +56,10 @@ namespace HFFinterface
 
         public void Update()
         {
-            
+            if (mod_enabled)
+            {
+                PythonInterface.listen();
+            }
         }
 
         [HarmonyPatch(typeof(SteamRichPresence), "SetGameMode")]

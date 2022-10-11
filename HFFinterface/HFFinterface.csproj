@@ -272,8 +272,12 @@
   <ItemGroup>
     <Compile Include="HFFInput.cs" />
     <Compile Include="HFFObject.cs" />
-    <Compile Include="SocketInterface.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PythonInterface.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="python\main.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
