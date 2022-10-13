@@ -43,6 +43,7 @@ namespace HFFinterface
             //Shell.RegisterCommand("check", new System.Action(check));
             Shell.RegisterCommand("enable", () => { if (!mod_enabled) { HFFInput.patch(); PythonInterface.init(); mod_enabled = true; } } );
             Shell.RegisterCommand("listen", () => { if (mod_enabled) { PythonInterface.listen(); } });
+            Shell.RegisterCommand("msg", (string y) => { PythonInterface.str = y; });
 
             /*cubePrimitive = GameObject.CreatePrimitive(PrimitiveType.Cube);
             Renderer objRenderer = cubePrimitive.GetComponent<Renderer>();

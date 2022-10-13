@@ -12,6 +12,8 @@ namespace HFFinterface
 {
     class PythonInterface
     {
+        public static string str;
+
         private static IPHostEntry ipHost;
         private static IPAddress ipAddr;
         private static IPEndPoint localEndPoint;
@@ -23,6 +25,8 @@ namespace HFFinterface
             ipAddr = new IPAddress( new byte[] { 0x00, 0x00, 0x00, 0x00 });
             localEndPoint = new IPEndPoint(ipAddr, 11111);
             Socket listener = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+            str = "test message";
             try
             {
                 listener.Bind(localEndPoint);
@@ -86,6 +90,9 @@ namespace HFFinterface
                     if (data.IndexOf("<E>") > -1)
                     {
                         data = data.Substring(0, data.IndexOf("<E>"));
+                        //HFFInput.hffControl = 
+                        byte[] message = Encoding.ASCII.GetBytes(str);
+                        mySocket.Send(message);
                         break;
                     }
                     avail = mySocket.Available > 0;

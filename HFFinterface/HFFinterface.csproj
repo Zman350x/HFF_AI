@@ -82,6 +82,12 @@
     <Reference Include="MonoMod.Utils">
       <HintPath>Z:\SteamLibrary\steamapps\common\Human Fall Flat\BepInEx\core\MonoMod.Utils.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Schema, Version=3.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.Schema.3.0.14\lib\net45\Newtonsoft.Json.Schema.dll</HintPath>
+    </Reference>
     <Reference Include="pb_Stl">
       <HintPath>Z:\SteamLibrary\steamapps\common\Human Fall Flat\Human_Data\Managed\pb_Stl.dll</HintPath>
     </Reference>
@@ -277,7 +283,12 @@
     <Compile Include="PythonInterface.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="python\game_inputs.py" />
     <Content Include="python\main.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

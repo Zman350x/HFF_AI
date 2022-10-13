@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BepInEx;
+using Newtonsoft.Json;
 
 namespace HFFinterface
 {
@@ -18,14 +19,23 @@ namespace HFFinterface
 
     struct Control
     {
+        [JsonProperty("look_x")]
         public float look_x;
+        [JsonProperty("look_y")]
         public float look_y;
+        [JsonProperty("jump")]
         public bool jump;
+        [JsonProperty("arm_left")]
         public bool arm_left;
+        [JsonProperty("arm_right")]
         public bool arm_right;
+        [JsonProperty("forward")]
         public bool forward;
+        [JsonProperty("backward")]
         public bool backward;
+        [JsonProperty("left")]
         public bool left;
+        [JsonProperty("right")]
         public bool right;
     }
 
@@ -44,8 +54,8 @@ namespace HFFinterface
             Shell.RegisterCommand("a", (string j) => { hffControl.left = (j[0] - '0') == 1; });
             Shell.RegisterCommand("s", (string j) => { hffControl.backward = (j[0] - '0') == 1; });
             Shell.RegisterCommand("d", (string j) => { hffControl.right = (j[0] - '0') == 1; });
-            Shell.RegisterCommand("x", (string x) => { hffControl.look_x = (float)Convert.ToDouble(x); });
-            Shell.RegisterCommand("y", (string y) => { hffControl.look_y = (float)Convert.ToDouble(y); });
+            Shell.RegisterCommand("x", (string j) => { hffControl.look_x = (float)Convert.ToDouble(j); });
+            Shell.RegisterCommand("y", (string j) => { hffControl.look_y = (float)Convert.ToDouble(j); });
             Shell.RegisterCommand("dead", new System.Action(dead));
             Shell.RegisterCommand("reload", new System.Action(reload));
         }
